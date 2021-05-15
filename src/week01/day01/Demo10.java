@@ -6,6 +6,29 @@ import java.util.Scanner;
 
 public class Demo10 {
     /**
+     * 测试case里变量的作用域
+     */
+    @Test
+    public void testFun3() {
+        String str = "3";
+        switch (str) {
+            case "1":
+            case "2":
+                final int a;
+                System.out.println("Demo10.testFun3(2");
+//                System.out.println(a);
+                break;
+            case "3":
+                System.out.println("Demo10.testFun3(3");
+                a=3;
+                System.out.println(a);
+                break;
+            default:
+                System.out.println("default");
+                break;
+        }
+    }
+    /**
      * 打印空格直角三角形
      */
     @Test
