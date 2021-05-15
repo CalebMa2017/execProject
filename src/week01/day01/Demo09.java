@@ -6,13 +6,22 @@ package week01.day01;
 public class Demo09 {
 
     public static void main(String[] args) {
-
-
-        
+        int a = 3;
+//        int b = 4;
+        int c = a+(a-=1)+a+a;
+        System.out.println(c);
+        a=3;
+        c = (a-=1)+a;
+        System.out.println(c);
     }
 }
 class Children {
     private void method(){
+    }
+    public void method02() {
+
+    }
+    public static void method03() {
 
     }
 }
