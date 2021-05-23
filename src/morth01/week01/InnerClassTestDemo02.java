@@ -1,4 +1,4 @@
-package week01.day01;
+package morth01.week01;
 
 /**
  * 方法内部类

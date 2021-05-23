@@ -1,10 +1,18 @@
-package week01.day01;
+package morth01.week01;
 
 import org.junit.Test;
 
 import java.util.Scanner;
 
 public class Demo10 {
+    /**
+     * 斐波那契数列
+     */
+    @Test
+    public void testFun4() {
+        int a = 1;
+        int b = 1;
+    }
     /**
      * 测试case里变量的作用域
      */

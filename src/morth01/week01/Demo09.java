@@ -1,4 +1,4 @@
-package week01.day01;
+package morth01.week01;
 
 /**
  * 父类private的方法，子类不能被继承，所以不能被重写。

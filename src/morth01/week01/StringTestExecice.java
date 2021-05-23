@@ -1,4 +1,4 @@
-package week01.day01;
+package morth01.week01;
 
 import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import org.junit.Test;

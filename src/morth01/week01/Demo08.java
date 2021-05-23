@@ -1,4 +1,4 @@
-package week01.day01;
+package morth01.week01;
 
 /**
  * 测试子类的static方法可不可以重名
