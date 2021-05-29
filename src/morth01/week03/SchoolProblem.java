@@ -1,17 +1,17 @@
-package morth01.week02;
+package morth01.week03;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class EightPuzzle implements Comparable{
+public class SchoolProblem implements Comparable{
     private int[] num = new int[9];
     private int evaluation; //估计函数f(n)：从起始状态到目标的最小估计值
     private int depth;    //d(n)：当前的深度，即走到当前状态的步骤
     private int misposition;            //启发函数 h(n)：到目标的最小估计(记录和目标状态有多少个数不同)
-    private EightPuzzle parent;            //当前状态的父状态
-    private ArrayList<EightPuzzle> answer = new ArrayList<EightPuzzle>();    //保存最终路径
+    private SchoolProblem parent;            //当前状态的父状态
+    private ArrayList<SchoolProblem> answer = new ArrayList<SchoolProblem>();    //保存最终路径
     public int[] getNum() {
         return num;
     }
@@ -36,10 +36,10 @@ public class EightPuzzle implements Comparable{
     public void setMisposition(int misposition) {
         this.misposition = misposition;
     }
-    public EightPuzzle getParent() {
+    public SchoolProblem getParent() {
         return parent;
     }
-    public void setParent(EightPuzzle parent) {
+    public void setParent(SchoolProblem parent) {
         this.parent = parent;
     }
 
@@ -48,7 +48,7 @@ public class EightPuzzle implements Comparable{
      * @param target
      * @return
      */
-    public boolean isTarget(EightPuzzle target){
+    public boolean isTarget(SchoolProblem target){
         return Arrays.equals(getNum(), target.getNum());
     }
     /**
@@ -56,7 +56,7 @@ public class EightPuzzle implements Comparable{
      * 初始化状态信息
      * @param target
      */
-    public void init(EightPuzzle target){
+    public void init(SchoolProblem target){
         int temp = 0;
         for(int i = 0; i < 9; i++){
             if(num[i] != target.getNum()[i])
@@ -75,7 +75,7 @@ public class EightPuzzle implements Comparable{
      * @param target
      * @return 有解：true 无解：false
      */
-    public boolean isSolvable(EightPuzzle target){
+    public boolean isSolvable(SchoolProblem target){
         int reverse = 0;
         for(int i = 0; i < 9; i++){
             for(int j = 0; j < i; j++){//遇到0跳过
@@ -94,7 +94,7 @@ public class EightPuzzle implements Comparable{
      * */
     @Override
     public int compareTo(Object o) {
-        EightPuzzle c = (EightPuzzle) o;
+        SchoolProblem c = (SchoolProblem) o;
         return this.evaluation - c.getEvaluation();//默认排序为f(n)由小到大排序
     }
     /**
@@ -114,7 +114,7 @@ public class EightPuzzle implements Comparable{
      * @param open    状态集合
      * @return 判断当前状态是否存在于open表中
      */
-    public int isContains(ArrayList<EightPuzzle> open){
+    public int isContains(ArrayList<SchoolProblem> open){
         for(int i = 0; i < open.size(); i++){
             if(Arrays.equals(open.get(i).getNum(), getNum())){
                 return i;
@@ -167,8 +167,8 @@ public class EightPuzzle implements Comparable{
      * @param move 0：上，1：下，2：左，3：右
      * @return 返回移动后的状态
      */
-    public EightPuzzle moveUp(int move){
-        EightPuzzle temp = new EightPuzzle();
+    public SchoolProblem moveUp(int move){
+        SchoolProblem temp = new SchoolProblem();
         int[] tempnum = num.clone();
         temp.setNum(tempnum);
         int position = getZeroPosition();    //0的位置
@@ -210,7 +210,7 @@ public class EightPuzzle implements Comparable{
      * 将最终答案路径保存下来并输出
      */
     public void printRoute(){
-        EightPuzzle temp = null;
+        SchoolProblem temp = null;
         int count = 0;
         temp = this;
         System.out.println("----------开始移动----------");
@@ -232,7 +232,7 @@ public class EightPuzzle implements Comparable{
      * @param parent 父状态
      * @param target 目标状态
      */
-    public void operation(ArrayList<EightPuzzle> open,ArrayList<EightPuzzle> close,EightPuzzle parent,EightPuzzle target){
+    public void operation(ArrayList<SchoolProblem> open,ArrayList<SchoolProblem> close,SchoolProblem parent,SchoolProblem target){
         int position = this.isContains(open);//获取在open表中的位置
         if(this.isContains(close) == -1){//如果不在close表中
 //            int position = this.isContains(open);//获取在open表中的位置
@@ -253,10 +253,10 @@ public class EightPuzzle implements Comparable{
 
     public static void main(String args[]){
         //定义open表
-        ArrayList<EightPuzzle> open = new ArrayList<EightPuzzle>();
-        ArrayList<EightPuzzle> close = new ArrayList<EightPuzzle>();
-        EightPuzzle start = new EightPuzzle();
-        EightPuzzle target = new EightPuzzle();
+        ArrayList<SchoolProblem> open = new ArrayList<SchoolProblem>();
+        ArrayList<SchoolProblem> close = new ArrayList<SchoolProblem>();
+        SchoolProblem start = new SchoolProblem();
+        SchoolProblem target = new SchoolProblem();
 
 //        int stnum[] = {8,6,7,2,5,4,3,0,1};
 //        int tanum[] = {6,4,7,8,5,0,3,2,1};
@@ -279,9 +279,9 @@ public class EightPuzzle implements Comparable{
             //初始化初始状态
             start.init(target);
             open.add(start);
-            while(open.isEmpty() == false){
+            while(!open.isEmpty()){
                 Collections.sort(open);            //按照evaluation的值排序
-                EightPuzzle best = open.get(0);    //从open表中取出最小估值的状态并移出open表
+                SchoolProblem best = open.get(0);    //从open表中取出最小估值的状态并移出open表
                 open.remove(0);
                 close.add(best);
 
@@ -297,25 +297,25 @@ public class EightPuzzle implements Comparable{
                 //0的位置上移之后状态不在close和open中设定best为其父状态，并初始化f(n)估值函数
                 if(best.isMoveUp()){//可以上移的话
                     move = 0;//上移标记
-                    EightPuzzle up = best.moveUp(move);//best的一个子状态
+                    SchoolProblem up = best.moveUp(move);//best的一个子状态
                     up.operation(open, close, best, target);
                 }
                 //0的位置下移之后状态不在close和open中设定best为其父状态，并初始化f(n)估值函数
                 if(best.isMoveDown()){
                     move = 1;
-                    EightPuzzle down = best.moveUp(move);
+                    SchoolProblem down = best.moveUp(move);
                     down.operation(open, close, best, target);
                 }
                 //0的位置左移之后状态不在close和open中设定best为其父状态，并初始化f(n)估值函数
                 if(best.isMoveLeft()){
                     move = 2;
-                    EightPuzzle left = best.moveUp(move);
+                    SchoolProblem left = best.moveUp(move);
                     left.operation(open, close, best, target);
                 }
                 //0的位置右移之后状态不在close和open中设定best为其父状态，并初始化f(n)估值函数
                 if(best.isMoveRight()){
                     move = 3;
-                    EightPuzzle right = best.moveUp(move);
+                    SchoolProblem right = best.moveUp(move);
                     right.operation(open, close, best, target);
                 }
             }
