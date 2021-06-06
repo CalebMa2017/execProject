@@ -30,4 +30,5 @@ public class Example04 {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         System.out.println(df.format(d));
     }
+
 }
