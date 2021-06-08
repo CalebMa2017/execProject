@@ -13,10 +13,11 @@ public class MyArrayListIterator<E> implements MyIterator<E>{
     @Override
     public boolean hasNext() {
 
+        return false;
     }
 
     @Override
     public E next() {
-
+        return null;
     }
 }

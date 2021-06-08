@@ -9,7 +9,6 @@ public class Example02 {
     public static void main(String[] args) {
         PigMangager pm =new PigMangager();
         pm.addAll("hh",2,500,7);
-
         pm.printAll();
     }
 }
