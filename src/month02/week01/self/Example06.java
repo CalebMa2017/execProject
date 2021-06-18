@@ -46,10 +46,18 @@ class TestClass {
 
     public TestClass() {
     }
-
     public TestClass(String name, int id, int num) {
         this.name = name;
         this.id = id;
         this.num = num;
+    }
+
+    @Override
+    public String toString() {
+        return "TestClass{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", num=" + num +
+                '}';
     }
 }
